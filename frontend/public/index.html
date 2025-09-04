@@ -20,9 +20,9 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
+    <!-- Service Worker Registration (only in production) -->
+    <script type="module">
+      if (import.meta && import.meta.env && import.meta.env.PROD && 'serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
             .then((registration) => {
@@ -32,6 +32,11 @@
               console.log('SW registration failed: ', registrationError);
             });
         });
+      } else {
+        // In dev, try to unregister any previously installed SW to avoid stale caches
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(reg => reg.unregister()));
+        }
       }
     </script>
   </body>

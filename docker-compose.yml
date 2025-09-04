@@ -1,10 +1,10 @@
-version: '3.8'
+version: "3.8"
 
 services:
   backend:
     build: ./backend
     ports:
-      - "8000:8000"
+      - "8080:8000"
     volumes:
       - ./backend:/app
     environment:
@@ -44,13 +44,13 @@ services:
   redis:
     image: redis:7-alpine
     ports:
-      - "6379:6379"
+      - "6380:6379"
 
   minio:
     image: minio/minio:latest
     ports:
-      - "9000:9000"  # MinIO API
-      - "9001:9001"  # MinIO Console
+      - "9002:9000" # MinIO API (host 9002)
+      - "9003:9001" # MinIO Console (host 9003)
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: password123

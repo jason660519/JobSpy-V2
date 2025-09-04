@@ -404,6 +404,7 @@ class SeekAdapter(BasePlatformAdapter):
             self.logger.error("提取職位鏈接失敗", error=str(e))
             return []
     
+    @async_retry(SCRAPING_RETRY_CONFIG)
     async def get_job_details(self, job_url: str, 
                             method: SearchMethod = SearchMethod.WEB_SCRAPING) -> Optional[JobData]:
         """獲取職位詳情
@@ -457,6 +458,7 @@ class SeekAdapter(BasePlatformAdapter):
                     await context.close()
                 await browser_manager.cleanup()
     
+    @async_retry(NETWORK_RETRY_CONFIG)
     async def parse_job_data(self, page: Page, job_url: str) -> Optional[JobData]:
         """解析職位數據
         

@@ -44,6 +44,16 @@ from .validators import (
     RegexValidator
 )
 
+from .scraping_config import (
+    ScrapingConfig,
+    DEFAULT_SCRAPING_CONFIG,
+    FAST_SCRAPING_CONFIG,
+    CONSERVATIVE_SCRAPING_CONFIG,
+    PRODUCTION_SCRAPING_CONFIG,
+    get_scraping_config,
+    create_custom_scraping_config
+)
+
 
 
 __all__ = [
@@ -84,7 +94,14 @@ __all__ = [
     'PathValidator',
     'RegexValidator',
     
-
+    # 爬蟲配置
+    'ScrapingConfig',
+    'DEFAULT_SCRAPING_CONFIG',
+    'FAST_SCRAPING_CONFIG',
+    'CONSERVATIVE_SCRAPING_CONFIG',
+    'PRODUCTION_SCRAPING_CONFIG',
+    'get_scraping_config',
+    'create_custom_scraping_config'
 ]
 
 # 版本信息

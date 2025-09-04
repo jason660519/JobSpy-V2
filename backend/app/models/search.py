@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Optional
 
 from sqlalchemy import Boolean, Integer, String, Text, Float, Index, ForeignKey
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
@@ -18,7 +18,7 @@ class SearchLog(Base):
     
     # User association (optional for anonymous searches)
     user_id: Mapped[Optional[str]] = mapped_column(
-        String,
+        UUID(as_uuid=False),
         ForeignKey("users.id"),
         index=True
     )
@@ -76,7 +76,7 @@ class UserAnalytics(Base):
     __tablename__ = "user_analytics"
     
     user_id: Mapped[str] = mapped_column(
-        String,
+        UUID(as_uuid=False),
         ForeignKey("users.id"),
         nullable=False,
         index=True

@@ -168,20 +168,31 @@ export const useUIStore = create<UIState>()(
         });
       }
       
-      // 監聽窗口大小變化
+      // 監聽窗口大小變化與滾動（在 store 方法可用前直接 set）
       if (typeof window !== 'undefined') {
         const handleResize = () => {
-          get().updateScreenSize(window.innerWidth);
+          const width = window.innerWidth;
+          const screenSize = getScreenSize(width);
+          const isMobile = width < 768;
+          const isTablet = width >= 768 && width < 992;
+          const isDesktop = width >= 992;
+          set({
+            screenSize,
+            isMobile,
+            isTablet,
+            isDesktop,
+            sidebarVisible: !isMobile,
+          });
         };
-        
+
         window.addEventListener('resize', handleResize);
         handleResize(); // 初始化
-        
-        // 監聽滾動
+
         const handleScroll = () => {
-          get().setScrollY(window.scrollY);
+          const y = window.scrollY;
+          set({ scrollY: y, isScrolled: y > 0 });
         };
-        
+
         window.addEventListener('scroll', handleScroll);
       }
       

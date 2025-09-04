@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Optional, List
 
 from sqlalchemy import Boolean, Integer, String, Text, Index, ARRAY, ForeignKey
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
@@ -98,14 +98,14 @@ class JobBookmark(Base):
     __tablename__ = "job_bookmarks"
     
     user_id: Mapped[str] = mapped_column(
-        String, 
+        UUID(as_uuid=False),
         ForeignKey("users.id"),
         nullable=False,
         index=True
     )
     
     job_id: Mapped[str] = mapped_column(
-        String,
+        UUID(as_uuid=False),
         ForeignKey("job_listings.id"),
         nullable=False,
         index=True

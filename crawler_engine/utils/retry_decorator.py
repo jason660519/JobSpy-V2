@@ -121,30 +121,21 @@ def async_retry(config: Optional[RetryConfig] = None):
                     # 檢查是否應該重試
                     if not config.should_retry(e):
                         logger.error(
-                            f"函數 {func.__name__} 發生不可重試的異常",
-                            exception=str(e),
-                            attempt=attempt,
-                            execution_time=execution_time
+                            f"函數 {func.__name__} 發生不可重試的異常: {str(e)} (嘗試 {attempt}, 執行時間 {execution_time:.2f}s)"
                         )
                         raise e
                     
                     # 如果是最後一次嘗試，直接拋出異常
                     if attempt == config.max_attempts:
                         logger.error(
-                            f"函數 {func.__name__} 在 {config.max_attempts} 次嘗試後仍然失敗",
-                            exception=str(e),
-                            execution_time=execution_time
+                            f"函數 {func.__name__} 在 {config.max_attempts} 次嘗試後仍然失敗: {str(e)} (執行時間 {execution_time:.2f}s)"
                         )
                         raise e
                     
                     # 計算延遲時間並等待
                     delay = config.calculate_delay(attempt)
                     logger.warning(
-                        f"函數 {func.__name__} 第 {attempt} 次嘗試失敗，{delay:.2f}秒後重試",
-                        exception=str(e),
-                        next_attempt=attempt + 1,
-                        delay=delay,
-                        execution_time=execution_time
+                        f"函數 {func.__name__} 第 {attempt} 次嘗試失敗: {str(e)}, {delay:.2f}秒後重試 (下次嘗試 {attempt + 1}, 執行時間 {execution_time:.2f}s)"
                     )
                     
                     await asyncio.sleep(delay)
@@ -194,36 +185,27 @@ def sync_retry(config: Optional[RetryConfig] = None):
                     execution_time = (datetime.now() - start_time).total_seconds()
                     
                     # 檢查是否應該重試
-                    if not config.should_retry(e):
-                        logger.error(
-                            f"函數 {func.__name__} 發生不可重試的異常",
-                            exception=str(e),
-                            attempt=attempt,
-                            execution_time=execution_time
-                        )
-                        raise e
-                    
-                    # 如果是最後一次嘗試，直接拋出異常
-                    if attempt == config.max_attempts:
-                        logger.error(
-                            f"函數 {func.__name__} 在 {config.max_attempts} 次嘗試後仍然失敗",
-                            exception=str(e),
-                            execution_time=execution_time
-                        )
-                        raise e
-                    
-                    # 計算延遲時間並等待
-                    delay = config.calculate_delay(attempt)
-                    logger.warning(
-                        f"函數 {func.__name__} 第 {attempt} 次嘗試失敗，{delay:.2f}秒後重試",
-                        exception=str(e),
-                        next_attempt=attempt + 1,
-                        delay=delay,
-                        execution_time=execution_time
+                if not config.should_retry(e):
+                    logger.error(
+                        f"函數 {func.__name__} 發生不可重試的異常: {str(e)} (嘗試 {attempt}, 執行時間 {execution_time:.2f}s)"
                     )
-                    
-                    import time
-                    time.sleep(delay)
+                    raise e
+                
+                # 如果是最後一次嘗試，直接拋出異常
+                if attempt == config.max_attempts:
+                    logger.error(
+                        f"函數 {func.__name__} 在 {config.max_attempts} 次嘗試後仍然失敗: {str(e)} (執行時間 {execution_time:.2f}s)"
+                    )
+                    raise e
+                
+                # 計算延遲時間並等待
+                delay = config.calculate_delay(attempt)
+                logger.warning(
+                    f"函數 {func.__name__} 第 {attempt} 次嘗試失敗: {str(e)}, {delay:.2f}秒後重試 (下次嘗試 {attempt + 1}, 執行時間 {execution_time:.2f}s)"
+                )
+                
+                import time
+                time.sleep(delay)
             
             # 這裡不應該到達，但為了安全起見
             if last_exception:
