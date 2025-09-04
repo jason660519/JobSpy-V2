@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Senior Software Engineer",
+    "company": "TechCorp",
+    "location": "Sydney, NSW",
+    "salary": "$120,000 - $150,000",
+    "description": "We are looking for a Senior Software Engineer to join our team...",
+    "url": "https://www.seek.com.au/job/12345",
+    "posted_date": "2025-09-01",
+    "job_type": "Full Time"
+  },
+  {
+    "title": "Frontend Developer",
+    "company": "WebSolutions",
+    "location": "Melbourne, VIC",
+    "salary": "$90,000 - $110,000",
+    "description": "Join our frontend team to build amazing web applications...",
+    "url": "https://www.seek.com.au/job/67890",
+    "posted_date": "2025-09-02",
+    "job_type": "Full Time"
+  }
+]

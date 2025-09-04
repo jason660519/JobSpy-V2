@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Senior Software Engineer",
+    "company": "TechCorp",
+    "location": "Sydney, NSW",
+    "salary": "$120,000 - $150,000",
+    "description": "We are looking for a Senior Software Engineer to join our team...",
+    "url": "https://www.seek.com.au/job/12345",
+    "posted_date": "2025-09-01",
+    "job_type": "Full Time",
+    "skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "AWS"
+    ],
+    "experience_years": "5+",
+    "education_required": "Bachelor's degree in Computer Science",
+    "ai_confidence_score": 0.95,
+    "ai_processing_timestamp": "2025-09-04T23:37:29.143936"
+  },
+  {
+    "title": "Frontend Developer",
+    "company": "WebSolutions",
+    "location": "Melbourne, VIC",
+    "salary": "$90,000 - $110,000",
+    "description": "Join our frontend team to build amazing web applications...",
+    "url": "https://www.seek.com.au/job/67890",
+    "posted_date": "2025-09-02",
+    "job_type": "Full Time",
+    "skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "AWS"
+    ],
+    "experience_years": "5+",
+    "education_required": "Bachelor's degree in Computer Science",
+    "ai_confidence_score": 0.95,
+    "ai_processing_timestamp": "2025-09-04T23:37:29.143978"
+  }
+]
