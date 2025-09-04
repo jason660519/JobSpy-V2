@@ -1,0 +1,757 @@
+/* JobSpy-v2 自定義樣式 - 基於原始 Jobseeker 項目 */
+
+/* CSS 變數定義 */
+:root {
+  --primary-color: #2563eb;
+  --primary-light: #3b82f6;
+  --primary-dark: #1d4ed8;
+  --secondary-color: #64748b;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #06b6d4;
+  --light-bg: #f8fafc;
+  --dark-bg: #1e293b;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-success: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  --gradient-warning: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+/* 主題變體 */
+[data-theme="ocean"] {
+  --primary-color: #0ea5e9;
+  --primary-light: #38bdf8;
+  --primary-dark: #0284c7;
+  --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  --gradient-hero: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  --gradient-success: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+}
+
+[data-theme="sunset"] {
+  --primary-color: #ea580c;
+  --primary-light: #f97316;
+  --primary-dark: #c2410c;
+  --gradient-primary: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+  --gradient-hero: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+  --gradient-success: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+}
+
+/* 基礎樣式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--light-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding-top: 76px;
+  overflow-x: hidden;
+}
+
+/* 導航欄樣式 */
+.navbar {
+  background: var(--gradient-primary);
+  box-shadow: var(--shadow-lg);
+  padding: 1rem 0;
+  backdrop-filter: blur(10px);
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  transform: translateZ(0);
+  will-change: transform;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white !important;
+}
+
+.navbar-brand i {
+  margin-right: 0.5rem;
+  color: #fbbf24;
+}
+
+/* 主容器 */
+.main-container {
+  min-height: 100vh;
+}
+
+/* 側邊欄樣式 */
+.sidebar {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-right: 1px solid var(--border-color);
+  height: calc(100vh - 76px);
+  padding: 1.5rem 1rem;
+  position: fixed;
+  top: 76px;
+  left: 0;
+  width: 16.666667%;
+  z-index: 1000;
+  overflow-y: auto;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 用戶資訊卡片 */
+.user-card {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  border-radius: 12px;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.user-avatar {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.user-status {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* 統計小工具 */
+.stats-widget {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.stats-header {
+  margin-bottom: 0.75rem;
+}
+
+.stats-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 0.5rem;
+  background: var(--light-bg);
+  border-radius: 8px;
+}
+
+.stat-number {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* 區塊標題 */
+.section-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 導航樣式 */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-nav a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.sidebar-nav a:hover::before {
+  left: 100%;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-icon {
+  width: 20px;
+  text-align: center;
+  margin-right: 0.75rem;
+  font-size: 1rem;
+}
+
+.nav-content {
+  flex: 1;
+}
+
+.nav-text {
+  display: block;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.nav-desc {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-top: 0.1rem;
+}
+
+.nav-badge {
+  margin-left: 0.5rem;
+}
+
+.nav-badge .badge {
+  font-size: 0.6rem;
+  padding: 0.2rem 0.4rem;
+}
+
+/* 快速操作 */
+.quick-actions {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-around;
+}
+
+.action-btn {
+  background: var(--light-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.action-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* 系統狀態 */
+.system-status {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.status-item:last-child {
+  margin-bottom: 0;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.online {
+  background: var(--success-color);
+}
+
+.status-indicator.offline {
+  background: var(--danger-color);
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.status-text {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* 主內容區域 */
+.main-content {
+  padding: 2rem;
+  background: var(--light-bg);
+  min-height: 100vh;
+  margin-left: 16.666667%;
+  margin-right: 16.666667%;
+}
+
+/* 右側邊欄樣式 */
+.right-sidebar {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-left: 1px solid var(--border-color);
+  height: calc(100vh - 76px);
+  padding: 1.5rem 1rem;
+  position: fixed;
+  top: 76px;
+  right: 0;
+  width: 16.666667%;
+  z-index: 1000;
+  overflow-y: auto;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 搜尋歷史小工具 */
+.search-history-widget {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.history-item:hover {
+  background: var(--light-bg);
+  transform: translateX(-2px);
+}
+
+.history-icon {
+  width: 20px;
+  text-align: center;
+  margin-right: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.history-text {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.history-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* 熱門搜尋小工具 */
+.trending-widget {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.trending-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.trending-item:hover {
+  background: var(--light-bg);
+}
+
+.trending-rank {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-right: 0.75rem;
+}
+
+.trending-rank.top3 {
+  background: var(--gradient-warning);
+}
+
+.trending-text {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.trending-count {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: var(--light-bg);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+}
+
+/* 即時通知小工具 */
+.notifications-widget {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  border-left: 3px solid var(--primary-color);
+  background: var(--light-bg);
+}
+
+.notification-icon {
+  width: 20px;
+  text-align: center;
+  margin-right: 0.75rem;
+  color: var(--primary-color);
+  margin-top: 0.1rem;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.notification-text {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.notification-time {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* 快速篩選小工具 */
+.filter-widget {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+.filter-group {
+  margin-bottom: 1rem;
+}
+
+.filter-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-tag {
+  background: var(--light-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-tag:hover,
+.filter-tag.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* 頁尾樣式 */
+.footer {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+  padding: 3rem 0 2rem;
+  margin-top: auto;
+}
+
+.footer h5 {
+  color: #fbbf24;
+  margin-bottom: 1rem;
+}
+
+.footer a {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #fbbf24;
+}
+
+/* 表單樣式 */
+.form-control,
+.form-select {
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+/* 按鈕樣式 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 卡片樣式 */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  background: white;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 12px 12px 0 0 !important;
+  padding: 1.5rem;
+}
+
+/* 加載動畫 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.loading-animation {
+  text-align: center;
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 0.3em solid rgba(37, 99, 235, 0.2);
+  border-top: 0.3em solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    width: 280px;
+    z-index: 1050;
+    transition: left 0.3s ease;
+    background: white;
+    box-shadow: var(--shadow-xl);
+    top: 76px;
+    height: calc(100vh - 76px);
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+
+  .right-sidebar {
+    position: fixed;
+    right: -100%;
+    width: 280px;
+    z-index: 1040;
+    transition: right 0.3s ease;
+    background: white;
+    box-shadow: var(--shadow-xl);
+    top: 76px;
+    height: calc(100vh - 76px);
+  }
+
+  .right-sidebar.show {
+    right: 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1rem;
+  }
+
+  .sidebar-toggle {
+    display: block !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar-toggle {
+    display: none;
+  }
+}
+
+/* 中等螢幕適配 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    width: 20%;
+  }
+
+  .main-content {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .right-sidebar {
+    width: 20%;
+  }
+}
+
+/* 大螢幕適配 */
+@media (min-width: 1025px) {
+  .sidebar {
+    width: 16.666667%;
+  }
+
+  .main-content {
+    margin-left: 16.666667%;
+    margin-right: 16.666667%;
+  }
+
+  .right-sidebar {
+    width: 16.666667%;
+  }
+}

@@ -1,0 +1,561 @@
+/* JobSpy v2 移動端響應式樣式 */
+
+/* 移動端基礎樣式 */
+@media (max-width: 767.98px) {
+  /* 重置主容器樣式 */
+  .main-container {
+    padding-top: 76px;
+  }
+  
+  /* 導航欄調整 */
+  .navbar {
+    padding: 0.5rem 0;
+  }
+  
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+  
+  /* 搜尋欄調整 */
+  .nav-search {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .nav-search .input-group {
+    flex-wrap: wrap;
+  }
+  
+  .nav-search .form-control {
+    min-width: 0;
+    flex: 1;
+    margin-bottom: 0.5rem;
+  }
+  
+  .nav-search .btn {
+    margin-left: 0.5rem;
+  }
+  
+  /* 主要內容區域 */
+  .main-content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 1rem !important;
+  }
+  
+  /* 卡片調整 */
+  .card {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+  }
+  
+  .card-header {
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  /* 表單元素調整 */
+  .form-control,
+  .form-select {
+    font-size: 1rem;
+    padding: 0.75rem;
+    min-height: 44px; /* 觸控目標最小尺寸 */
+  }
+  
+  /* 按鈕調整 */
+  .btn {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+  
+  .btn-sm {
+    min-height: 36px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-lg {
+    min-height: 50px;
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
+  
+  /* 網格系統調整 */
+  .row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  
+  [class*="col-"] {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  /* 標題調整 */
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  h4 {
+    font-size: 1.125rem;
+  }
+  
+  h5 {
+    font-size: 1rem;
+  }
+  
+  h6 {
+    font-size: 0.875rem;
+  }
+  
+  /* 隱藏桌面端元素 */
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* 顯示移動端元素 */
+  .mobile-only {
+    display: block !important;
+  }
+  
+  .mobile-only-inline {
+    display: inline !important;
+  }
+  
+  .mobile-only-flex {
+    display: flex !important;
+  }
+  
+  /* 側邊欄調整 */
+  .sidebar {
+    position: fixed;
+    top: 76px;
+    left: -100%;
+    width: 280px;
+    height: calc(100vh - 76px);
+    z-index: 1050;
+    transition: left 0.3s ease;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar.show {
+    left: 0;
+  }
+  
+  .right-sidebar {
+    position: fixed;
+    top: 76px;
+    right: -100%;
+    width: 280px;
+    height: calc(100vh - 76px);
+    z-index: 1040;
+    transition: right 0.3s ease;
+    background: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .right-sidebar.show {
+    right: 0;
+  }
+  
+  /* 遮罩層 */
+  .sidebar-backdrop {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1030;
+  }
+  
+  /* 登入/註冊頁面調整 */
+  .login-page .card,
+  .register-page .card {
+    margin: 1rem;
+    border-radius: 16px;
+  }
+  
+  .login-page .card-body,
+  .register-page .card-body {
+    padding: 1.5rem;
+  }
+  
+  /* 搜索頁面調整 */
+  .search-page .hero-section {
+    padding: 2rem 0;
+  }
+  
+  .search-page .search-form-wrapper {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .search-page .ai-suggestions {
+    padding: 1rem !important;
+  }
+  
+  .search-page .ai-suggestions .btn {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  /* 職位詳情頁調整 */
+  .job-details-page .card {
+    margin-bottom: 1rem;
+  }
+  
+  .job-details-page .action-buttons {
+    position: static;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .job-details-page .mobile-fixed-apply {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .job-details-page .mobile-tab-navigation {
+    position: sticky;
+    top: 76px;
+    background: white;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 用戶資料頁調整 */
+  .user-profile-page .card {
+    margin-bottom: 1rem;
+  }
+  
+  .user-profile-page .position-relative {
+    display: inline-block;
+  }
+  
+  /* 結果頁調整 */
+  .results-page .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .results-page .view-controls,
+  .results-page .sort-controls {
+    justify-content: center;
+  }
+  
+  .results-page .job-card.list-view {
+    margin-bottom: 1rem;
+  }
+  
+  .results-page .job-card.grid-view {
+    margin-bottom: 1rem;
+  }
+  
+  /* 分頁調整 */
+  .pagination-wrapper {
+    margin-top: 1rem;
+  }
+  
+  .pagination-wrapper .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* 通知調整 */
+  .toast-container {
+    margin: 1rem;
+    width: calc(100% - 2rem);
+  }
+  
+  .toast {
+    width: 100%;
+  }
+  
+  /* 表單調整 */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  /* 模態框調整 */
+  .modal-dialog {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+  
+  .modal-content {
+    border-radius: 12px;
+  }
+  
+  /* 頁腳調整 */
+  footer .row {
+    text-align: center;
+  }
+  
+  footer .text-md-end {
+    text-align: center !important;
+  }
+}
+
+/* 平板端樣式 */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .main-content {
+    padding: 1.5rem !important;
+  }
+  
+  .sidebar {
+    width: 20%;
+  }
+  
+  .right-sidebar {
+    width: 20%;
+  }
+}
+
+/* 橫屏模式優化 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .navbar {
+    padding: 0.25rem 0;
+  }
+  
+  .main-container {
+    padding-top: 60px;
+  }
+  
+  .sidebar,
+  .right-sidebar {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+  
+  .card-body {
+    padding: 0.75rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* 高解析度屏幕優化 */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* 觸控設備優化 */
+@media (hover: none) and (pointer: coarse) {
+  /* 增加點擊區域 */
+  .btn,
+  .form-control,
+  .form-select,
+  .nav-link,
+  .list-group-item {
+    min-height: 44px;
+  }
+  
+  /* 調整懸停效果 */
+  .btn:hover,
+  .list-group-item:hover {
+    transform: none;
+  }
+  
+  /* 增加按鈕間距 */
+  .btn {
+    margin: 2px;
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  .card {
+    background: #2d2d2d;
+    border-color: #404040;
+  }
+  
+  .form-control,
+  .form-select {
+    background: #333333;
+    border-color: #404040;
+    color: #ffffff;
+  }
+  
+  .form-control:focus,
+  .form-select:focus {
+    background: #333333;
+    border-color: #667eea;
+  }
+  
+  .bg-light {
+    background-color: #2d2d2d !important;
+  }
+  
+  .text-muted {
+    color: #a0a0a0 !important;
+  }
+  
+  .sidebar,
+  .right-sidebar {
+    background: #2a2a2a;
+    color: white;
+  }
+}
+
+/* 減少動畫偏好 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .sidebar,
+  .right-sidebar {
+    transition: none;
+  }
+}
+
+/* 高對比度模式 */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    border: 2px solid #000000;
+  }
+  
+  .form-control,
+  .form-select {
+    border: 2px solid #000000;
+  }
+  
+  .card {
+    border: 2px solid #000000;
+  }
+}
+
+/* 打印樣式 */
+@media print {
+  .navbar,
+  .sidebar,
+  .right-sidebar,
+  .footer,
+  .btn {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid #000000;
+  }
+}
+
+/* 觸控友好的間距和尺寸 */
+@media (max-width: 767.98px) {
+  /* 增加觸控目標間距 */
+  .btn-group .btn {
+    margin: 0 2px;
+  }
+  
+  /* 調整表單元素間距 */
+  .form-check {
+    margin-bottom: 0.75rem;
+  }
+  
+  .form-check-input {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.25rem;
+  }
+  
+  .form-check-label {
+    padding-left: 0.5rem;
+  }
+  
+  /* 調整列表項目間距 */
+  .list-group-item {
+    padding: 1rem;
+  }
+  
+  /* 調整導航標籤 */
+  .nav-tabs .nav-link {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* 調整模態框 */
+  .modal-header,
+  .modal-footer {
+    padding: 1rem;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+  
+  /* 調整表格 */
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+  
+  /* 調整徽章 */
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.25em 0.5em;
+  }
+  
+  /* 調整進度條 */
+  .progress {
+    height: 1rem;
+  }
+  
+  /* 調整警告框 */
+  .alert {
+    padding: 1rem;
+  }
+  
+  /* 調整工具提示 */
+  .tooltip {
+    font-size: 0.75rem;
+  }
+  
+  /* 調整下拉菜單 */
+  .dropdown-menu {
+    font-size: 0.875rem;
+  }
+  
+  /* 調整分頁 */
+  .page-link {
+    padding: 0.5rem 0.75rem;
+  }
+}

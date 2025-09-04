@@ -1,0 +1,521 @@
+# 測試框架核心依賴
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+pytest-html>=3.2.0
+pytest-xdist>=3.3.0
+pytest-mock>=3.11.0
+pytest-benchmark>=4.0.0
+pytest-timeout>=2.1.0
+pytest-sugar>=0.9.7
+pytest-clarity>=1.0.1
+
+# 異步測試支持
+aiohttp>=3.8.0
+aiofiles>=23.0.0
+aioredis>=2.0.0
+asyncpg>=0.28.0
+
+# 模擬和測試工具
+responses>=0.23.0
+requests-mock>=1.11.0
+factory-boy>=3.3.0
+faker>=19.0.0
+freezegun>=1.2.0
+
+# 性能和監控
+psutil>=5.9.0
+memory-profiler>=0.61.0
+py-spy>=0.3.14
+
+# 瀏覽器自動化測試
+playwright>=1.37.0
+selenium>=4.11.0
+
+# 數據庫測試
+sqlalchemy>=2.0.0
+alembic>=1.11.0
+pytest-postgresql>=5.0.0
+pytest-redis>=3.0.0
+pytest-mongodb>=2.4.0
+
+# API測試
+httpx>=0.24.0
+requests>=2.31.0
+responses>=0.23.0
+
+# 配置和環境
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+pyyaml>=6.0
+toml>=0.10.2
+
+# 日誌和調試
+loguru>=0.7.0
+rich>=13.0.0
+coloredlogs>=15.0
+
+# 數據處理和驗證
+pandas>=2.0.0
+numpy>=1.24.0
+jsonschema>=4.18.0
+cerberus>=1.3.4
+
+# 加密和安全
+cryptography>=41.0.0
+bcrypt>=4.0.0
+passlib>=1.7.4
+
+# 緩存測試
+redis>=4.6.0
+memcached>=1.59
+
+# 圖像處理（AI視覺測試）
+Pillow>=10.0.0
+opencv-python>=4.8.0
+
+# 機器學習測試
+scikit-learn>=1.3.0
+tensorflow>=2.13.0
+torch>=2.0.0
+
+# 網絡和爬蟲測試
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+parsel>=1.8.0
+
+# 文檔生成
+sphinx>=7.0.0
+sphinx-rtd-theme>=1.3.0
+
+# 代碼質量
+flake8>=6.0.0
+black>=23.0.0
+isort>=5.12.0
+mypy>=1.5.0
+pylint>=2.17.0
+bandit>=1.7.5
+
+# 測試報告和可視化
+allure-pytest>=2.13.0
+pytest-json-report>=1.5.0
+pytest-metadata>=3.0.0
+
+# 並發和多線程測試
+concurrent-futures>=3.1.1
+threading-utils>=0.3
+
+# 時間和日期測試
+freezegun>=1.2.0
+delorean>=1.0.0
+
+# 文件和路徑測試
+pathlib2>=2.3.7
+watchdog>=3.0.0
+
+# 環境變量和配置測試
+os-environ>=1.4.0
+envparse>=0.2.0
+
+# 序列化測試
+msgpack>=1.0.5
+orjson>=3.9.0
+ujson>=5.8.0
+
+# 壓縮和歸檔測試
+zipfile36>=0.1.3
+tarfile>=0.9.0
+
+# 正則表達式測試
+regex>=2023.6.3
+
+# URL和網絡工具
+furl>=2.1.3
+validators>=0.20.0
+
+# 隨機數據生成
+factory-boy>=3.3.0
+faker>=19.0.0
+hypothesis>=6.82.0
+
+# 測試數據管理
+pytest-datadir>=1.4.1
+pytest-datafiles>=3.0.0
+
+# 插件和擴展
+pytest-plugins>=1.0.0
+pytest-runner>=6.0.0
+
+# 開發工具
+ipython>=8.14.0
+jupyter>=1.0.0
+
+# 類型檢查
+types-requests>=2.31.0
+types-redis>=4.6.0
+types-PyYAML>=6.0.0
+
+# 測試覆蓋率增強
+coverage[toml]>=7.2.0
+coveragepy-lcov>=0.1.2
+
+# 性能基準測試
+pytest-benchmark>=4.0.0
+locust>=2.15.0
+
+# 安全測試
+safety>=2.3.0
+bandit[toml]>=1.7.5
+
+# 內存泄漏檢測
+objgraph>=3.5.0
+tracemalloc>=0.2.0
+
+# 網絡模擬
+vcrpy>=5.1.0
+betamax>=0.8.1
+
+# 時區測試
+pytz>=2023.3
+zoneinfo>=0.2.1
+
+# 文本處理測試
+chardet>=5.1.0
+ftfy>=6.1.1
+
+# 配置文件格式支持
+configparser>=5.3.0
+ini2toml>=0.11.0
+
+# 進程和系統測試
+psutil>=5.9.0
+subprocess32>=3.5.4
+
+# 臨時文件和目錄
+tempfile>=3.11.0
+shutil>=3.11.0
+
+# 錯誤追蹤和調試
+traceback2>=1.4.0
+faulthandler>=3.11.0
+
+# 數據結構測試
+collections-extended>=2.0.2
+more-itertools>=10.1.0
+
+# 函數式編程測試
+functools32>=3.2.3
+itertools>=3.11.0
+
+# 裝飾器測試
+decorator>=5.1.1
+wrapt>=1.15.0
+
+# 元編程測試
+inspect2>=0.1.2
+ast>=3.11.0
+
+# 並行處理測試
+multiprocessing>=3.11.0
+joblib>=1.3.0
+
+# 隊列和消息測試
+queue>=3.11.0
+celery>=5.3.0
+
+# 事件和信號測試
+blinker>=1.6.2
+pydispatcher>=2.0.7
+
+# 狀態機測試
+transitions>=0.9.0
+statemachine>=2.1.0
+
+# 緩存策略測試
+cachetools>=5.3.0
+diskcache>=5.6.0
+
+# 限流和節流測試
+ratelimit>=2.2.1
+slowapi>=0.1.8
+
+# 重試機制測試
+retrying>=1.3.4
+tenacity>=8.2.0
+
+# 電路斷路器測試
+pybreaker>=1.0.1
+circuitbreaker>=1.4.0
+
+# 健康檢查測試
+healthcheck>=1.3.3
+py-healthcheck>=1.10.1
+
+# 指標和監控測試
+prometheus-client>=0.17.0
+statsd>=4.0.1
+
+# 分佈式追蹤測試
+opentelemetry-api>=1.19.0
+jaeger-client>=4.8.0
+
+# 配置驗證測試
+voluptuous>=0.13.1
+schema>=0.7.5
+
+# 插件系統測試
+pluggy>=1.2.0
+stevedore>=5.1.0
+
+# 命令行界面測試
+click>=8.1.0
+argparse>=1.4.0
+
+# 進度條測試
+tqdm>=4.65.0
+progressbar2>=4.2.0
+
+# 顏色輸出測試
+colorama>=0.4.6
+termcolor>=2.3.0
+
+# 表格輸出測試
+tabulate>=0.9.0
+prettytable>=3.8.0
+
+# 樹形結構測試
+anytree>=2.9.0
+treelib>=1.6.4
+
+# 圖形和可視化測試
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 數學計算測試
+scipy>=1.11.0
+sympy>=1.12
+
+# 統計分析測試
+statsmodels>=0.14.0
+pingouin>=0.5.3
+
+# 機器學習模型測試
+xgboost>=1.7.0
+lightgbm>=4.0.0
+
+# 自然語言處理測試
+nltk>=3.8.0
+spacy>=3.6.0
+
+# 圖像識別測試
+opencv-contrib-python>=4.8.0
+scikit-image>=0.21.0
+
+# 音頻處理測試
+librosa>=0.10.0
+pydub>=0.25.0
+
+# 視頻處理測試
+moviepy>=1.0.3
+opencv-python>=4.8.0
+
+# 地理位置測試
+geopy>=2.3.0
+folium>=0.14.0
+
+# 時間序列測試
+pandas>=2.0.0
+sktime>=0.21.0
+
+# 異常檢測測試
+pyod>=1.1.0
+isolation-forest>=0.1.2
+
+# 聚類分析測試
+scikit-learn>=1.3.0
+hdbscan>=0.8.29
+
+# 降維測試
+umap-learn>=0.5.3
+tsne>=0.3.1
+
+# 特徵工程測試
+feature-engine>=1.6.0
+category-encoders>=2.6.0
+
+# 模型解釋測試
+shap>=0.42.0
+lime>=0.2.0
+
+# 超參數優化測試
+optuna>=3.2.0
+hyperopt>=0.2.7
+
+# 模型部署測試
+mlflow>=2.5.0
+bentoml>=1.0.0
+
+# 數據版本控制測試
+dvc>=3.0.0
+git-lfs>=1.6.0
+
+# 實驗追蹤測試
+wandb>=0.15.0
+neptune-client>=1.3.0
+
+# 數據質量測試
+great-expectations>=0.17.0
+pandera>=0.15.0
+
+# 數據血緣測試
+lineage>=0.3.0
+datalineage>=0.1.0
+
+# 數據目錄測試
+amundsen>=4.3.0
+datahub>=0.10.0
+
+# 數據治理測試
+apache-atlas>=2.3.0
+open-metadata>=1.1.0
+
+# 數據安全測試
+cryptography>=41.0.0
+fernet>=3.11.0
+
+# 數據脫敏測試
+faker>=19.0.0
+anonymizedf>=1.0.0
+
+# 數據同步測試
+airbyte>=0.50.0
+fivetran>=1.0.0
+
+# 數據湖測試
+delta-lake>=0.10.0
+iceberg>=0.5.0
+
+# 數據倉庫測試
+snowflake-connector-python>=3.1.0
+bigquery>=3.11.0
+
+# 流處理測試
+kafka-python>=2.0.2
+pulsar-client>=3.2.0
+
+# 批處理測試
+apache-beam>=2.49.0
+pyspark>=3.4.0
+
+# 工作流測試
+airflow>=2.6.0
+prefect>=2.10.0
+
+# 容器化測試
+docker>=6.1.0
+kubernetes>=27.2.0
+
+# 雲服務測試
+boto3>=1.28.0
+google-cloud>=0.34.0
+azure>=4.0.0
+
+# 監控和告警測試
+prometheus-client>=0.17.0
+grafana-api>=1.0.3
+
+# 日誌聚合測試
+elasticsearch>=8.9.0
+logstash>=0.1.0
+
+# 搜索引擎測試
+solr>=2.1.0
+whoosh>=2.7.4
+
+# 消息隊列測試
+rabbitmq>=0.2.0
+activemq>=0.1.0
+
+# 緩存系統測試
+memcached>=1.59
+hazelcast>=5.2.0
+
+# 負載均衡測試
+haproxy>=0.1.0
+nginx>=1.0.0
+
+# 服務發現測試
+consul>=1.1.0
+etcd3>=0.12.0
+
+# 配置中心測試
+apollo>=0.1.0
+nacos>=0.1.0
+
+# 鏈路追蹤測試
+zipkin>=0.1.0
+skywalking>=0.1.0
+
+# 服務網格測試
+istio>=0.1.0
+linkerd>=0.1.0
+
+# API網關測試
+kong>=0.1.0
+zuul>=0.1.0
+
+# 認證授權測試
+keycloak>=0.1.0
+auth0>=0.1.0
+
+# 密鑰管理測試
+vault>=0.1.0
+aws-kms>=0.1.0
+
+# 證書管理測試
+cert-manager>=0.1.0
+letsencrypt>=0.1.0
+
+# 網絡安全測試
+firewall>=0.1.0
+waf>=0.1.0
+
+# 入侵檢測測試
+ids>=0.1.0
+ips>=0.1.0
+
+# 漏洞掃描測試
+nessus>=0.1.0
+owasp-zap>=0.1.0
+
+# 代碼掃描測試
+sonarqube>=0.1.0
+checkmarx>=0.1.0
+
+# 依賴掃描測試
+snyk>=0.1.0
+whitesource>=0.1.0
+
+# 鏡像掃描測試
+twistlock>=0.1.0
+aquasec>=0.1.0
+
+# 合規檢查測試
+inspec>=0.1.0
+open-scap>=0.1.0
+
+# 風險評估測試
+risk-assessment>=0.1.0
+threat-modeling>=0.1.0
+
+# 事件響應測試
+incident-response>=0.1.0
+forensics>=0.1.0
+
+# 災難恢復測試
+disaster-recovery>=0.1.0
+backup-restore>=0.1.0
+
+# 業務連續性測試
+business-continuity>=0.1.0
+crisis-management>=0.1.0
