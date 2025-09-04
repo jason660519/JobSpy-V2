@@ -70,8 +70,8 @@ export const SearchForm: React.FC<SearchFormProps> = ({
           {/* 主要搜尋區域 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
-              label="職位名稱"
-              placeholder="例如：軟體工程師、產品經理"
+              label="職稱 / 技能"
+              placeholder="例如：React developer、後端工程師、資料分析"
               value={query.jobTitle}
               onChange={(e) => setQuery(prev => ({ ...prev, jobTitle: e.target.value }))}
               icon={<Search className="h-5 w-5" />}
@@ -79,8 +79,8 @@ export const SearchForm: React.FC<SearchFormProps> = ({
             />
             
             <Input
-              label="工作地點"
-              placeholder="例如：台北、新加坡、遠端"
+              label="地點"
+              placeholder="例如：台北、台中、遠端"
               value={query.location}
               onChange={(e) => setQuery(prev => ({ ...prev, location: e.target.value }))}
               icon={<MapPin className="h-5 w-5" />}

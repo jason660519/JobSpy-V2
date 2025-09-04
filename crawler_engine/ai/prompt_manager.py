@@ -306,3 +306,90 @@ class PromptManager:
         """添加平台特定增強"""
         self.platform_enhancements[platform.lower()] = enhancement
         self.logger.info("平台增強已添加", platform=platform)
+    
+    def get_job_processing_prompt(self, job_data: Dict[str, Any]) -> str:
+        """獲取職位數據處理提示詞
+        
+        Args:
+            job_data: 原始職位數據
+            
+        Returns:
+            str: 職位處理提示詞
+        """
+        return f"""
+請分析並標準化以下職位數據，返回結構化的JSON格式：
+
+原始數據：
+{job_data}
+
+請提取並標準化以下信息：
+1. 職位標題（title）
+2. 公司名稱（company）
+3. 工作地點（location）
+4. 薪資信息（salary）
+5. 工作類型（job_type）：全職/兼職/合約等
+6. 發布日期（posted_date）
+7. 職位描述（description）
+8. 技能要求（skills）：從描述中提取的技能列表
+9. 經驗要求（experience_level）：初級/中級/高級
+10. 教育要求（education_requirement）
+11. 工作模式（work_mode）：遠程/現場/混合
+
+返回格式：
+{{
+  "title": "標準化的職位標題",
+  "company": "公司名稱",
+  "location": "標準化的地點",
+  "salary": "標準化的薪資信息",
+  "job_type": "工作類型",
+  "posted_date": "ISO格式日期",
+  "description": "清理後的職位描述",
+  "skills": ["技能1", "技能2"],
+  "experience_level": "經驗等級",
+  "education_requirement": "教育要求",
+  "work_mode": "工作模式",
+  "confidence": 0.95
+}}
+
+注意：
+- 只返回JSON格式，不要添加其他說明
+- 如果某個字段沒有信息，使用null
+- confidence值表示對提取結果的信心（0-1之間）
+"""
+    
+    def get_skill_extraction_prompt(self, job_description: str) -> str:
+        """獲取技能提取提示詞
+        
+        Args:
+            job_description: 職位描述
+            
+        Returns:
+            str: 技能提取提示詞
+        """
+        return f"""
+請從以下職位描述中提取相關的技術技能和軟技能：
+
+職位描述：
+{job_description}
+
+請提取以下類型的技能：
+1. 程式語言（如：Python, Java, JavaScript等）
+2. 框架和庫（如：React, Django, Spring等）
+3. 資料庫（如：MySQL, PostgreSQL, MongoDB等）
+4. 雲端平台（如：AWS, Azure, GCP等）
+5. 工具和技術（如：Docker, Kubernetes, Git等）
+6. 軟技能（如：溝通能力, 團隊合作, 領導力等）
+
+返回格式（只返回JSON數組）：
+[
+  "技能1",
+  "技能2",
+  "技能3"
+]
+
+注意：
+- 只返回JSON數組格式
+- 技能名稱使用標準化格式
+- 避免重複的技能
+- 只包含明確提到的技能
+"""

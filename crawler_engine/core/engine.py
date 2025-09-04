@@ -11,8 +11,8 @@ from dataclasses import dataclass
 import structlog
 
 from ..config import CrawlerConfig, ProcessingStrategy
-from ..ai_vision.service import AIVisionService
-from ..scrapers.smart_scraper import SmartScraper
+from ..ai.vision_service import AIVisionService
+from ..scraper.smart_scraper import SmartScraper
 from ..platforms.registry import PlatformRegistry
 from .scheduler import TaskScheduler
 from .processor import ResultProcessor

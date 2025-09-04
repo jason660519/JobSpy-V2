@@ -1,0 +1,62 @@
+{
+  "mcpServers": {
+    "postgresql": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-postgres/server.js"],
+      "env": {
+        "POSTGRES_URL": "postgres://USER:PASSWORD@localhost:5432/DBNAME",
+        "PGSSLMODE": "disable"
+      }
+    },
+    "supabase": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-supabase/server.js"],
+      "env": {
+        "SUPABASE_URL": "https://YOUR-PROJECT.supabase.co",
+        "SUPABASE_ANON_KEY": "YOUR-ANON-KEY"
+      }
+    },
+    "browserbase": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-browserbase/server.js"],
+      "env": {
+        "BROWSERBASE_API_KEY": "YOUR-API-KEY"
+      }
+    },
+    "firecrawl": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-firecrawl/server.js"]
+    },
+    "docker": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-docker/server.js"],
+      "env": {
+        "DOCKER_HOST": "npipe:////./pipe/docker_engine"
+      }
+    },
+    "kubernetes": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-k8s/server.js"],
+      "env": {
+        "KUBECONFIG": "C:/Users/你的帳號/.kube/config"
+      }
+    },
+    "postman": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-postman/server.js"],
+      "env": {
+        "POSTMAN_API_KEY": "YOUR-API-KEY"
+      }
+    },
+    "vector-search": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-vector-search/server.js"]
+    },
+    "sequential-thinking": {
+      "command": "node",
+      "args": ["C:/path/to/mcp-sequential-thinking/server.js"]
+    }
+  }
+}
+
+

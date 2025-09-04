@@ -209,6 +209,162 @@ class DataPipeline:
             processor_type=type(processor).__name__
         )
     
+    async def process_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        """處理單個數據項
+        
+        Args:
+            item: 輸入數據項
+            
+        Returns:
+            Dict[str, Any]: 處理後的數據項
+        """
+        try:
+            # 基本數據清理
+            cleaned_item = self._clean_basic_data(item)
+            
+            # 標準化字段
+            standardized_item = self._standardize_fields(cleaned_item)
+            
+            # 驗證數據
+            validated_item = self._validate_data(standardized_item)
+            
+            return validated_item
+            
+        except Exception as e:
+            self.logger.error(f"處理數據項失敗: {e}")
+            # 返回原始數據，標記處理失敗
+            item['processing_error'] = str(e)
+            return item
+    
+    def _clean_basic_data(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        """基本數據清理"""
+        cleaned = item.copy()
+        
+        # 清理字符串字段
+        for key, value in cleaned.items():
+            if isinstance(value, str):
+                # 去除多餘空白
+                cleaned[key] = value.strip()
+                # 移除特殊字符
+                if key in ['title', 'company', 'location']:
+                    cleaned[key] = ' '.join(cleaned[key].split())
+        
+        return cleaned
+    
+    def _standardize_fields(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        """標準化字段格式"""
+        standardized = item.copy()
+        
+        # 標準化薪資信息
+        if 'salary' in standardized:
+            standardized['salary_info'] = self._parse_salary(standardized['salary'])
+        
+        # 標準化工作類型
+        if 'work_type' in standardized:
+            standardized['work_type'] = self._standardize_work_type(standardized['work_type'])
+        
+        # 標準化地點
+        if 'location' in standardized:
+            standardized['location'] = self._standardize_location(standardized['location'])
+        
+        return standardized
+    
+    def _validate_data(self, item: Dict[str, Any]) -> Dict[str, Any]:
+        """驗證數據完整性"""
+        validated = item.copy()
+        
+        # 必填字段檢查
+        required_fields = ['title', 'company']
+        for field in required_fields:
+            if not validated.get(field):
+                validated[f'{field}_missing'] = True
+        
+        # 添加驗證時間戳
+        validated['validation_timestamp'] = time.time()
+        
+        return validated
+    
+    def _parse_salary(self, salary_text: str) -> Dict[str, Any]:
+        """解析薪資信息"""
+        import re
+        
+        salary_info = {
+            'original_text': salary_text,
+            'min_salary': None,
+            'max_salary': None,
+            'currency': 'AUD',
+            'period': 'yearly'
+        }
+        
+        if not salary_text:
+            return salary_info
+        
+        # 提取數字
+        numbers = re.findall(r'[\d,]+', salary_text.replace(',', ''))
+        if numbers:
+            if len(numbers) >= 2:
+                salary_info['min_salary'] = int(numbers[0])
+                salary_info['max_salary'] = int(numbers[1])
+            elif len(numbers) == 1:
+                salary_info['min_salary'] = int(numbers[0])
+        
+        # 檢測時間週期
+        if any(word in salary_text.lower() for word in ['hour', 'hr', 'hourly']):
+            salary_info['period'] = 'hourly'
+        elif any(word in salary_text.lower() for word in ['day', 'daily']):
+            salary_info['period'] = 'daily'
+        elif any(word in salary_text.lower() for word in ['week', 'weekly']):
+            salary_info['period'] = 'weekly'
+        elif any(word in salary_text.lower() for word in ['month', 'monthly']):
+            salary_info['period'] = 'monthly'
+        
+        return salary_info
+    
+    def _standardize_work_type(self, work_type: str) -> str:
+        """標準化工作類型"""
+        if not work_type:
+            return 'Unknown'
+        
+        work_type_lower = work_type.lower()
+        
+        if any(word in work_type_lower for word in ['full', 'permanent']):
+            return 'Full-time'
+        elif any(word in work_type_lower for word in ['part']):
+            return 'Part-time'
+        elif any(word in work_type_lower for word in ['contract', 'temp']):
+            return 'Contract'
+        elif any(word in work_type_lower for word in ['casual']):
+            return 'Casual'
+        else:
+            return work_type
+    
+    def _standardize_location(self, location: str) -> str:
+        """標準化地點信息"""
+        if not location:
+            return 'Unknown'
+        
+        # 移除多餘的州/國家信息
+        location = location.replace(', Australia', '').replace(', AU', '')
+        
+        # 標準化主要城市名稱
+        city_mappings = {
+            'sydney': 'Sydney',
+            'melbourne': 'Melbourne',
+            'brisbane': 'Brisbane',
+            'perth': 'Perth',
+            'adelaide': 'Adelaide',
+            'canberra': 'Canberra',
+            'darwin': 'Darwin',
+            'hobart': 'Hobart'
+        }
+        
+        location_lower = location.lower()
+        for key, value in city_mappings.items():
+            if key in location_lower:
+                return value
+        
+        return location
+    
     async def process_data(self, data: Union[Any, List[Any]]) -> List[ProcessingResult]:
         """處理數據
         

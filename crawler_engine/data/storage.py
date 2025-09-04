@@ -217,7 +217,7 @@ class DatabaseStorage(StorageBackend):
     
     def __init__(self, config: StorageConfig):
         super().__init__(config)
-        self.db_path = config.connection_string or "jobs.db"
+        self.db_path = config.database_url.replace("sqlite:///", "") if config.database_url.startswith("sqlite:///") else "jobs.db"
         self.connection = None
         self._lock = asyncio.Lock()
     
@@ -341,6 +341,84 @@ class DatabaseStorage(StorageBackend):
             job.scraped_date,
             raw_data_json
         ))
+    
+    async def store_job(self, job_data: Dict[str, Any]) -> bool:
+        """存儲單個職位數據（字典格式）
+        
+        Args:
+            job_data: 職位數據字典
+            
+        Returns:
+            bool: 是否成功
+        """
+        try:
+            # 將字典轉換為 JobData 對象
+            from .models import JobData
+            
+            job = JobData(
+                job_id=job_data.get('job_id', ''),
+                external_id=job_data.get('external_id', ''),
+                platform=job_data.get('platform', 'seek'),
+                title=job_data.get('title', ''),
+                company=job_data.get('company', ''),
+                location=job_data.get('location', ''),
+                url=job_data.get('url', ''),
+                description=job_data.get('description', ''),
+                salary_min=job_data.get('salary_min'),
+                salary_max=job_data.get('salary_max'),
+                salary_currency=job_data.get('salary_currency', 'AUD'),
+                salary_period=job_data.get('salary_period', 'yearly'),
+                job_type=job_data.get('job_type', ''),
+                experience_level=job_data.get('experience_level', ''),
+                posted_date=job_data.get('posted_date'),
+                scraped_date=job_data.get('scraped_date'),
+                raw_data=job_data
+            )
+            
+            # 使用現有的 store 方法
+            return await self.store(job)
+            
+        except Exception as e:
+            self.logger.error(f"存儲職位數據失敗: {e}")
+            return False
+    
+    async def get_stats(self) -> Dict[str, Any]:
+        """獲取數據庫統計信息
+        
+        Returns:
+            Dict[str, Any]: 統計信息
+        """
+        try:
+            async with aiosqlite.connect(self.db_path) as db:
+                # 獲取總記錄數
+                cursor = await db.execute("SELECT COUNT(*) FROM jobs")
+                total_jobs = (await cursor.fetchone())[0]
+                
+                # 獲取平台分布
+                cursor = await db.execute("""
+                    SELECT platform, COUNT(*) 
+                    FROM jobs 
+                    GROUP BY platform
+                """)
+                platform_stats = dict(await cursor.fetchall())
+                
+                # 獲取最新記錄時間
+                cursor = await db.execute("""
+                    SELECT MAX(created_at) 
+                    FROM jobs
+                """)
+                latest_record = (await cursor.fetchone())[0]
+                
+                return {
+                    "total_jobs": total_jobs,
+                    "platform_distribution": platform_stats,
+                    "latest_record": latest_record,
+                    "database_path": self.db_path
+                }
+                
+        except Exception as e:
+            self.logger.error(f"獲取統計信息失敗: {e}")
+            return {"error": str(e)}
     
     async def retrieve(self, query: Dict[str, Any]) -> List[JobData]:
         """檢索職位數據

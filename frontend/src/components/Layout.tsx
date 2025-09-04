@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MobileNavigation from './MobileNavigation';
 import { usePushNotifications } from '../hooks/usePushNotifications';
+import { useLocation } from 'react-router-dom';
 
 /**
  * 基礎佈局組件 - 使用 Bootstrap 5 樣式
@@ -16,6 +17,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [showRightSidebar, setShowRightSidebar] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
   
   // Push notification hook
   const { isSupported, permission, requestPermission, subscribeToPush } = usePushNotifications();
@@ -117,47 +120,18 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <span className="navbar-toggler-icon"></span>
           </button>
           
-          {/* 搜尋欄 */}
-          <div className="nav-search mx-auto my-2 my-lg-0">
-            <form className="d-flex" role="search">
-              <div className="input-group">
-                <input
-                  type="search"
-                  className="form-control"
-                  placeholder="輸入想找的工作、地點或需求..."
-                  aria-label="搜尋職位"
-                />
-                <button className="btn btn-outline-light" type="button" aria-label="語音搜尋">
-                  <i className="fas fa-microphone"></i>
-                </button>
-                <button className="btn btn-light" type="submit" aria-label="搜尋">
-                  <i className="fas fa-search me-1"></i>搜尋
-                </button>
-              </div>
-            </form>
-          </div>
-          
           <div className="collapse navbar-collapse" id="topNavbar">
             <ul className="navbar-nav ms-auto align-items-lg-center">
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                  <i className="fas fa-book me-1"></i> Doc
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle text-white" href="#" id="moreMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i className="fas fa-ellipsis-h me-1"></i> 更多
                 </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                  <i className="fas fa-download me-1"></i> Downloads
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                  <i className="fas fa-heart me-1"></i> Donate
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                  <i className="fas fa-envelope me-1"></i> 聯絡我們
-                </a>
+                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="moreMenu">
+                  <li><a className="dropdown-item" href="#"><i className="fas fa-book me-2"></i>Doc</a></li>
+                  <li><a className="dropdown-item" href="#"><i className="fas fa-download me-2"></i>Downloads</a></li>
+                  <li><a className="dropdown-item" href="#"><i className="fas fa-heart me-2"></i>Donate</a></li>
+                  <li><a className="dropdown-item" href="#"><i className="fas fa-envelope me-2"></i>聯絡我們</a></li>
+                </ul>
               </li>
               <li className="nav-item">
                 <button 
@@ -180,16 +154,18 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                   )}
                 </button>
               </li>
-              <li className="nav-item">
-                <button 
-                  className="btn btn-outline-light me-2" 
-                  title="切換右側邊欄"
-                  onClick={toggleRightSidebar}
-                  aria-label="切換右側邊欄"
-                >
-                  <i className="fas fa-columns"></i>
-                </button>
-              </li>
+              {!isHome && (
+                <li className="nav-item">
+                  <button 
+                    className="btn btn-outline-light me-2" 
+                    title="切換右側邊欄"
+                    onClick={toggleRightSidebar}
+                    aria-label="切換右側邊欄"
+                  >
+                    <i className="fas fa-columns"></i>
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -356,7 +332,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             </main>
           </div>
 
-          {/* 右側邊欄 */}
+          {/* 右側邊欄（首頁隱藏） */}
+          {!isHome && (
           <div className={`col-md-3 ${isMobile ? 'd-none' : ''}`}>
             <div className={`right-sidebar ${showRightSidebar ? 'show' : ''}`} style={{ height: 'calc(100vh - 76px)', overflowY: 'auto' }}>
               <div className="right-sidebar-content p-3">
@@ -445,6 +422,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               </div>
             </div>
           </div>
+          )}
         </div>
       </div>
 

@@ -217,11 +217,11 @@ export const SearchPage: React.FC = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8 text-center">
-              <h1 className="display-4 fw-bold mb-3">
-                發現您的理想工作
+              <h1 className="display-5 fw-bold mb-2">
+                一鍵聚合多平台職缺，30 秒找到更適合的工作
               </h1>
-              <p className="lead mb-4">
-                使用 AI 智能匹配技術，為您精準推薦最適合的職位機會
+              <p className="mb-4">
+                整合 LinkedIn、Indeed、Glassdoor 並用 AI 提升匹配準確度
               </p>
               
               {/* 搜索表單 */}
@@ -240,16 +240,22 @@ export const SearchPage: React.FC = () => {
                     </div>
                     <div className="d-flex flex-wrap gap-2">
                       {aiSuggestions.map((suggestion, index) => (
-                        <button
-                          key={index}
-                          className="btn btn-sm btn-outline-light"
-                          onClick={() => {
-                            // 可以根據建議進行搜索
-                            console.log('AI 建議:', suggestion);
-                          }}
-                        >
-                          {suggestion}
-                        </button>
+                        <div key={index} className="d-inline-flex align-items-center bg-transparent border border-light rounded-pill px-2 py-1 text-white" style={{ gap: '6px' }}>
+                          <span className="small">{suggestion}</span>
+                          <button
+                            className="btn btn-xs btn-light text-dark"
+                            onClick={() => {
+                              handleSearch({
+                                jobTitle: suggestion.replace(/^[^：:]+[：:]/, '').trim(),
+                                location: '',
+                                selectedPlatforms: ['linkedin', 'indeed', 'glassdoor'],
+                                useAI: true
+                              });
+                            }}
+                          >
+                            套用
+                          </button>
+                        </div>
                       ))}
                     </div>
                   </div>

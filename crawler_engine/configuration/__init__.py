@@ -23,7 +23,7 @@ from .environment import (
 )
 
 from .settings import (
-    Settings,
+    AppSettings as Settings,
     DatabaseSettings,
     APISettings,
     CrawlerSettings,
@@ -43,6 +43,8 @@ from .validators import (
     PathValidator,
     RegexValidator
 )
+
+
 
 __all__ = [
     # 配置管理
@@ -80,7 +82,9 @@ __all__ = [
     'EmailValidator',
     'PortValidator',
     'PathValidator',
-    'RegexValidator'
+    'RegexValidator',
+    
+
 ]
 
 # 版本信息

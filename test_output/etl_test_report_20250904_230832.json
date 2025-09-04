@@ -1,0 +1,68 @@
+{
+  "start_time": "2025-09-04T23:08:01.887240",
+  "test_query": "software engineer",
+  "test_location": "Sydney",
+  "test_limit": 5,
+  "stages": {
+    "stage_1": {
+      "stage": "原始數據抓取",
+      "success": false,
+      "files_created": [],
+      "jobs_extracted": 0,
+      "minio_stored": false,
+      "local_stored": false,
+      "errors": [
+        "階段1失敗: 搜索失敗: 搜索失敗: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.seek.com.au/jobs?q=software+engineer&page=1&l=Sydney&sortmode=relevance\", waiting until \"networkidle\"\n"
+      ]
+    }
+  },
+  "overall_success": false,
+  "errors": [
+    "ETL測試過程中發生錯誤: 階段1失敗，無法繼續後續測試"
+  ],
+  "end_time": "2025-09-04T23:08:32.818204",
+  "total_duration": 30.930964,
+  "etl_status": {
+    "stage_1_raw_data": {
+      "completed": false,
+      "files": [],
+      "count": 0
+    },
+    "stage_2_ai_processed": {
+      "completed": false,
+      "files": [],
+      "count": 0
+    },
+    "stage_3_cleaned_data": {
+      "completed": false,
+      "files": [],
+      "count": 0
+    },
+    "stage_4_db_loaded": {
+      "completed": false,
+      "records": 0
+    },
+    "stage_5_csv_exported": {
+      "completed": false,
+      "files": [],
+      "count": 0
+    }
+  },
+  "file_verification": {
+    "local_files": {
+      "raw_data": [],
+      "ai_processed": [],
+      "cleaned_data": [],
+      "csv_exports": []
+    },
+    "minio_files": {
+      "raw-data_bucket": [],
+      "ai-processed_bucket": [],
+      "cleaned-data_bucket": []
+    },
+    "verification_status": {
+      "local_files_correct": false,
+      "minio_files_accessible": true
+    }
+  }
+}

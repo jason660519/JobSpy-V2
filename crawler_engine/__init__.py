@@ -14,8 +14,8 @@ __version__ = "2.0.0"
 __author__ = "JobSpy Team"
 
 from .core.engine import CrawlerEngine
-from .ai_vision.service import AIVisionService
-from .scrapers.smart_scraper import SmartScraper
+from .ai.vision_service import AIVisionService
+from .scraper.smart_scraper import SmartScraper
 from .platforms import PlatformRegistry
 from .config import CrawlerConfig
 

@@ -29,6 +29,7 @@ class CostTier(Enum):
 class AIConfig:
     """AI服務配置"""
     openai_api_key: str = field(default_factory=lambda: os.getenv("OPENAI_API_KEY", ""))
+    openai_base_url: str = field(default_factory=lambda: os.getenv("OPENAI_BASE_URL", ""))
     openai_model: str = "gpt-4-vision-preview"
     max_tokens: int = 1000
     temperature: float = 0.1
@@ -97,6 +98,7 @@ class StorageConfig:
     minio_endpoint: str = field(default_factory=lambda: os.getenv("MINIO_ENDPOINT", "localhost:9000"))
     minio_access_key: str = field(default_factory=lambda: os.getenv("MINIO_ACCESS_KEY", "minioadmin"))
     minio_secret_key: str = field(default_factory=lambda: os.getenv("MINIO_SECRET_KEY", "minioadmin"))
+    minio_secure: bool = False
     minio_bucket: str = "crawler-data"
     
     # Redis配置
